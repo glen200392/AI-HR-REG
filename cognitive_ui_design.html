@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR AI 分析平台 - 認知友善設計</title>
+    <style>
+        /* 基於認知神經科學的設計系統 */
+        :root {
+            /* 認知色彩系統 - 基於情緒和認知研究 */
+            --primary-blue: #2563eb;      /* 信任、專業 (藍色激活前額葉皮質) */
+            --success-green: #059669;     /* 成功、安全 (綠色降低皮質醇) */
+            --warning-amber: #d97706;     /* 注意、謹慎 (橙色提高警覺性) */
+            --danger-red: #dc2626;        /* 錯誤、緊急 (紅色快速注意捕獲) */
+            --neutral-gray: #6b7280;      /* 次要信息 (灰色不爭奪注意力) */
+            
+            /* 認知空間系統 - 基於格式塔心理學 */
+            --space-xs: 0.25rem;   /* 4px - 細節間距 */
+            --space-sm: 0.5rem;    /* 8px - 相關元素 */
+            --space-md: 1rem;      /* 16px - 功能區塊 */
+            --space-lg: 1.5rem;    /* 24px - 模組分離 */
+            --space-xl: 2rem;      /* 32px - 主要區域 */
+            
+            /* 認知字體系統 - 基於閱讀研究 */
+            --font-size-xs: 0.75rem;   /* 12px - 輔助信息 */
+            --font-size-sm: 0.875rem;  /* 14px - 正文 */
+            --font-size-md: 1rem;      /* 16px - 標準大小 */
+            --font-size-lg: 1.125rem;  /* 18px - 重要信息 */
+            --font-size-xl: 1.25rem;   /* 20px - 標題 */
+            
+            /* 認知陰影系統 - 基於深度感知 */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 重置和基礎樣式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #374151;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+        }
+
+        /* 認知佈局系統 */
+        .cognitive-layout {
+            display: grid;
+            grid-template-areas: 
+                "header header"
+                "sidebar main"
+                "sidebar footer";
+            grid-template-columns: 280px 1fr;
+            grid-template-rows: auto 1fr auto;
+            min-height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
+            gap: var(--space-md);
+            padding: var(--space-md);
+        }
+
+        /* 頭部區域 - 全局導航和狀態 */
+        .header {
+            grid-area: header;
+            background: white;
+            padding: var(--space-lg);
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            justify-content: between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .status-indicators {
+            display: flex;
+            gap: var(--space-md);
+            margin-left: auto;
+        }
+
+        .status-badge {
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: 20px;
+            font-size: var(--font-size-xs);
+            font-weight: 500;
+        }
+
+        .status-online {
+            background: #dcfce7;
+            color: var(--success-green);
+        }
+
+        /* 側邊欄 - 主要導航 */
+        .sidebar {
+            grid-area: sidebar;
+            background: white;
+            border-radius: 12px;
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-sm);
+            height: fit-content;
+        }
+
+        .nav-section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .nav-title {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            color: var(--neutral-gray);
+            margin-bottom: var(--space-md);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 8px;
+            color: #374151;
+            text-decoration: none;
+            margin-bottom: var(--space-xs);
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .nav-item:hover {
+            background: #f3f4f6;
+            transform: translateX(2px);
+        }
+
+        .nav-item.active {
+            background: #dbeafe;
+            color: var(--primary-blue);
+            font-weight: 500;
+        }
+
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 20px;
+            background: var(--primary-blue);
+            border-radius: 2px;
+        }
+
+        /* 主內容區域 */
+        .main-content {
+            grid-area: main;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+
+        /* 認知工作流設計 */
+        .workflow-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .workflow-header {
+            padding: var(--space-xl);
+            border-bottom: 1px solid #e5e7eb;
+            background: linear-gradient(90deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+
+        .workflow-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: var(--space-sm);
+        }
+
+        .workflow-subtitle {
+            color: var(--neutral-gray);
+            font-size: var(--font-size-sm);
+        }
+
+        /* 步驟指示器 - 基於進度認知 */
+        .progress-indicator {
+            display: flex;
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 20px;
+            font-size: var(--font-size-sm);
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.completed {
+            background: #dcfce7;
+            color: var(--success-green);
+        }
+
+        .progress-step.active {
+            background: #dbeafe;
+            color: var(--primary-blue);
+            font-weight: 500;
+        }
+
+        .progress-step.pending {
+            background: #f3f4f6;
+            color: var(--neutral-gray);
+        }
+
+        /* 主要工作區域 */
+        .workflow-body {
+            flex: 1;
+            padding: var(--space-xl);
+            overflow-y: auto;
+        }
+
+        /* 認知表單設計 */
+        .cognitive-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-section {
+            margin-bottom: var(--space-xl);
+            padding: var(--space-lg);
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            background: #fafbfc;
+        }
+
+        .form-section-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+
+        .form-label {
+            display: block;
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: var(--space-sm);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: var(--space-md);
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: var(--font-size-md);
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* 認知按鈕系統 */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-md) var(--space-lg);
+            border: none;
+            border-radius: 8px;
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+
+        /* 結果展示區域 */
+        .results-container {
+            margin-top: var(--space-xl);
+            display: none;
+        }
+
+        .results-container.show {
+            display: block;
+            animation: slideInUp 0.5s ease;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: var(--space-xl);
+            margin-bottom: var(--space-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+        }
+
+        .result-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .confidence-badge {
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: 20px;
+            font-size: var(--font-size-xs);
+            font-weight: 500;
+            background: #dcfce7;
+            color: var(--success-green);
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .cognitive-layout {
+                grid-template-areas: 
+                    "header"
+                    "main"
+                    "footer";
+                grid-template-columns: 1fr;
+                padding: var(--space-sm);
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .workflow-header {
+                padding: var(--space-lg);
+            }
+
+            .workflow-body {
+                padding: var(--space-lg);
+            }
+
+            .progress-indicator {
+                flex-direction: column;
+                gap: var(--space-sm);
+            }
+        }
+
+        /* 無障礙輔助 */
+        .screen-reader-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* 載入狀態 */
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #f3f4f6;
+            border-top: 3px solid var(--primary-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="cognitive-layout">
+        <!-- 頭部導航 -->
+        <header class="header">
+            <div class="logo-section">
+                <div class="logo">HR</div>
+                <div>
+                    <h1 style="font-size: var(--font-size-lg); font-weight: 600;">AI 人才分析平台</h1>
+                    <p style="font-size: var(--font-size-xs); color: var(--neutral-gray);">智能驅動的HR決策支持</p>
+                </div>
+            </div>
+            
+            <div class="status-indicators">
+                <div class="status-badge status-online">
+                    <span>🟢</span> AI 服務正常
+                </div>
+                <div class="status-badge" style="background: #fef3c7; color: #d97706;">
+                    <span>⚡</span> 99.2% 可用性
+                </div>
+            </div>
+        </header>
+
+        <!-- 側邊導航 -->
+        <nav class="sidebar">
+            <div class="nav-section">
+                <div class="nav-title">分析功能</div>
+                <a href="#employee" class="nav-item active">
+                    <span>👤</span> 員工分析
+                </a>
+                <a href="#team" class="nav-item">
+                    <span>👥</span> 團隊分析
+                </a>
+                <a href="#batch" class="nav-item">
+                    <span>📊</span> 批量分析
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">歷史記錄</div>
+                <a href="#history" class="nav-item">
+                    <span>📋</span> 分析記錄
+                </a>
+                <a href="#reports" class="nav-item">
+                    <span>📈</span> 分析報告
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">設定</div>
+                <a href="#settings" class="nav-item">
+                    <span>⚙️</span> 系統設定
+                </a>
+                <a href="#help" class="nav-item">
+                    <span>❓</span> 使用說明
+                </a>
+            </div>
+        </nav>
+
+        <!-- 主內容區域 -->
+        <main class="main-content">
+            <div class="workflow-container">
+                <!-- 工作流程頭部 -->
+                <div class="workflow-header">
+                    <h2 class="workflow-title">員工分析</h2>
+                    <p class="workflow-subtitle">基於AI的專業人才評估與發展建議</p>
+                    
+                    <!-- 進度指示器 -->
+                    <div class="progress-indicator">
+                        <div class="progress-step active">
+                            <span>1</span> 資料輸入
+                        </div>
+                        <div class="progress-step pending">
+                            <span>2</span> AI 分析
+                        </div>
+                        <div class="progress-step pending">
+                            <span>3</span> 結果展示
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 工作流程主體 -->
+                <div class="workflow-body">
+                    <form class="cognitive-form" id="employeeForm">
+                        <!-- 基本資料區塊 -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">
+                                <span>📝</span> 基本資料
+                            </h3>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="employeeName">員工姓名 *</label>
+                                <input type="text" id="employeeName" class="form-input" 
+                                       placeholder="請輸入員工姓名" required>
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md);">
+                                <div class="form-group">
+                                    <label class="form-label" for="department">部門</label>
+                                    <select id="department" class="form-input">
+                                        <option value="">請選擇部門</option>
+                                        <option value="engineering">軟體工程部</option>
+                                        <option value="marketing">行銷部</option>
+                                        <option value="sales">業務部</option>
+                                        <option value="hr">人力資源部</option>
+                                        <option value="finance">財務部</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="role">職位</label>
+                                    <input type="text" id="role" class="form-input" 
+                                           placeholder="例：資深軟體工程師">
+                                </div>
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md);">
+                                <div class="form-group">
+                                    <label class="form-label" for="experience">工作年資</label>
+                                    <input type="number" id="experience" class="form-input" 
+                                           placeholder="年" min="0" max="50">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="performance">績效分數</label>
+                                    <input type="number" id="performance" class="form-input" 
+                                           placeholder="0.0 - 1.0" min="0" max="1" step="0.1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 技能評估區塊 -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">
+                                <span>🎯</span> 技能評估
+                            </h3>
+                            
+                            <div id="skillsContainer">
+                                <div style="display: grid; grid-template-columns: 1fr 120px auto; gap: var(--space-sm); align-items: end; margin-bottom: var(--space-md);">
+                                    <div class="form-group">
+                                        <label class="form-label">技能名稱</label>
+                                        <input type="text" class="form-input skill-name" placeholder="例：Python程式設計">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">熟練度</label>
+                                        <input type="number" class="form-input skill-score" placeholder="0.0-1.0" min="0" max="1" step="0.1">
+                                    </div>
+                                    <button type="button" class="btn btn-secondary" onclick="addSkillRow()">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 職業目標區塊 -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">
+                                <span>🚀</span> 職業發展
+                            </h3>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="careerGoals">職業目標</label>
+                                <textarea id="careerGoals" class="form-input form-textarea" 
+                                         placeholder="請描述員工的職業發展目標和期望..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="interests">興趣領域</label>
+                                <input type="text" id="interests" class="form-input" 
+                                       placeholder="例：人工智能、專案管理、團隊領導">
+                            </div>
+                        </div>
+
+                        <!-- 操作按鈕 -->
+                        <div style="display: flex; gap: var(--space-md); justify-content: center; margin-top: var(--space-xl);">
+                            <button type="button" class="btn btn-secondary">
+                                <span>💾</span> 儲存草稿
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <span>🤖</span> 開始 AI 分析
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- 結果展示區域 -->
+                    <div class="results-container" id="resultsContainer">
+                        <div class="result-card">
+                            <div class="result-header">
+                                <h3 class="result-title">🎯 分析結果</h3>
+                                <div class="confidence-badge">信心度: 87%</div>
+                            </div>
+                            
+                            <div id="analysisContent">
+                                <!-- AI 分析結果將顯示在這裡 -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 載入狀態 -->
+                    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+                        <div style="text-align: center;">
+                            <div class="loading-spinner"></div>
+                            <p style="margin-top: var(--space-md); color: var(--neutral-gray);">
+                                AI 正在分析中，請稍候...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // 認知友善的JavaScript互動
+        
+        // 技能行動態添加
+        function addSkillRow() {
+            const container = document.getElementById('skillsContainer');
+            const newRow = document.createElement('div');
+            newRow.style.cssText = 'display: grid; grid-template-columns: 1fr 120px auto; gap: var(--space-sm); align-items: end; margin-bottom: var(--space-md);';
+            newRow.innerHTML = `
+                <div class="form-group">
+                    <input type="text" class="form-input skill-name" placeholder="技能名稱">
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-input skill-score" placeholder="0.0-1.0" min="0" max="1" step="0.1">
+                </div>
+                <button type="button" class="btn btn-secondary" onclick="removeSkillRow(this)">-</button>
+            `;
+            container.appendChild(newRow);
+        }
+
+        function removeSkillRow(button) {
+            button.parentElement.parentElement.remove();
+        }
+
+        // 表單提交處理
+        document.getElementById('employeeForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // 顯示載入狀態
+            document.getElementById('loadingOverlay').style.display = 'flex';
+            
+            // 更新進度指示器
+            updateProgressStep(2);
+            
+            // 收集表單數據
+            const formData = collectFormData();
+            
+            try {
+                // 模擬API調用
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                
+                // 顯示結果
+                displayResults(formData);
+                updateProgressStep(3);
+                
+            } catch (error) {
+                alert('分析過程中發生錯誤，請稍後再試。');
+            } finally {
+                document.getElementById('loadingOverlay').style.display = 'none';
+            }
+        });
+
+        function collectFormData() {
+            const skills = {};
+            const skillNames = document.querySelectorAll('.skill-name');
+            const skillScores = document.querySelectorAll('.skill-score');
+            
+            for (let i = 0; i < skillNames.length; i++) {
+                if (skillNames[i].value && skillScores[i].value) {
+                    skills[skillNames[i].value] = parseFloat(skillScores[i].value);
+                }
+            }
+
+            return {
+                name: document.getElementById('employeeName').value,
+                department: document.getElementById('department').value,
+                role: document.getElementById('role').value,
+                experience_years: parseInt(document.getElementById('experience').value) || 0,
+                performance_score: parseFloat(document.getElementById('performance').value) || 0,
+                skills: skills,
+                career_goals: document.getElementById('careerGoals').value.split(',').map(s => s.trim()),
+                interests: document.getElementById('interests').value.split(',').map(s => s.trim())
+            };
+        }
+
+        function updateProgressStep(step) {
+            const steps = document.querySelectorAll('.progress-step');
+            steps.forEach((stepEl, index) => {
+                stepEl.className = 'progress-step';
+                if (index + 1 < step) {
+                    stepEl.classList.add('completed');
+                } else if (index + 1 === step) {
+                    stepEl.classList.add('active');
+                } else {
+                    stepEl.classList.add('pending');
+                }
+            });
+        }
+
+        function displayResults(data) {
+            const container = document.getElementById('resultsContainer');
+            const content = document.getElementById('analysisContent');
+            
+            // 模擬AI分析結果
+            content.innerHTML = `
+                <div style="margin-bottom: var(--space-lg);">
+                    <h4 style="color: var(--primary-blue); margin-bottom: var(--space-md);">👤 員工概況</h4>
+                    <p>基於 <strong>${data.name}</strong> 的資料分析，該員工在 ${data.department} 擔任 ${data.role}，具有 ${data.experience_years} 年工作經驗。</p>
+                </div>
+
+                <div style="margin-bottom: var(--space-lg);">
+                    <h4 style="color: var(--success-green); margin-bottom: var(--space-md);">⭐ 核心優勢</h4>
+                    <ul style="padding-left: var(--space-lg);">
+                        <li>技術能力突出，特別是在核心專業領域</li>
+                        <li>學習能力強，適應新技術快速</li>
+                        <li>團隊協作表現良好</li>
+                    </ul>
+                </div>
+
+                <div style="margin-bottom: var(--space-lg);">
+                    <h4 style="color: var(--warning-amber); margin-bottom: var(--space-md);">🎯 發展建議</h4>
+                    <ul style="padding-left: var(--space-lg);">
+                        <li>建議加強領導力培養，考慮擔任小組負責人</li>
+                        <li>可以參與跨部門專案，擴展視野</li>
+                        <li>建議參加專業認證課程，提升技能深度</li>
+                    </ul>
+                </div>
+
+                <div style="margin-bottom: var(--space-lg);">
+                    <h4 style="color: var(--primary-blue); margin-bottom: var(--space-md);">🚀 職業路徑</h4>
+                    <div style="background: #f8fafc; padding: var(--space-md); border-radius: 8px;">
+                        <p><strong>短期 (6-12個月):</strong> 高級專員，承擔更多技術挑戰</p>
+                        <p><strong>中期 (1-3年):</strong> 團隊領導，管理小型專案</p>
+                        <p><strong>長期 (3-5年):</strong> 部門主管或技術專家</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: var(--space-xl);">
+                    <button class="btn btn-primary">📄 下載完整報告</button>
+                    <button class="btn btn-secondary">📧 分享結果</button>
+                </div>
+            `;
+            
+            container.classList.add('show');
+            container.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 鍵盤導航支持
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                // ESC 鍵關閉模態框或返回
+                const overlay = document.getElementById('loadingOverlay');
+                if (overlay.style.display === 'flex') {
+                    overlay.style.display = 'none';
+                }
+            }
+        });
+
+        // 無障礙改進
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.01)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

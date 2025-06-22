@@ -1,0 +1,240 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search",
+    "submit": "Submit",
+    "reset": "Reset",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "export": "Export",
+    "import": "Import",
+    "refresh": "Refresh",
+    "settings": "Settings",
+    "help": "Help"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "employee_analysis": "Employee Analysis",
+    "team_analysis": "Team Analysis",
+    "reports": "Reports",
+    "settings": "Settings",
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "dashboard": {
+    "title": "AI Talent Analysis Dashboard",
+    "subtitle": "Comprehensive view: Team performance and talent insights",
+    "quick_stats": {
+      "total_employees": "Total Employees",
+      "avg_performance": "Average Performance Score",
+      "improvement_areas": "Areas for Improvement",
+      "monthly_analyses": "Monthly Analyses"
+    },
+    "charts": {
+      "team_performance": "Team Performance Trends",
+      "skill_distribution": "Talent Skill Distribution"
+    },
+    "recent_activities": {
+      "title": "Recent Analysis Activities",
+      "team_collaboration_completed": "Team collaboration analysis completed",
+      "skill_assessment_updated": "Employee skill assessment updated", 
+      "ai_model_training": "Performance prediction model training"
+    },
+    "ai_suggestions": {
+      "title": "AI Smart Suggestions",
+      "improve_communication": "Improve team communication",
+      "skill_training": "Skill training plan",
+      "retention_strategy": "Talent retention strategy"
+    },
+    "actions": {
+      "export_report": "Export Report",
+      "start_analysis": "Start Analysis"
+    }
+  },
+  "employee_analysis": {
+    "title": "Employee Analysis",
+    "subtitle": "In-depth analysis of individual employee capabilities, performance and development potential",
+    "form": {
+      "select_employee": "Select Analysis Target",
+      "employee_name": "Employee Name",
+      "analysis_type": "Analysis Type",
+      "time_range": "Time Range",
+      "comprehensive": "Comprehensive Analysis",
+      "performance": "Performance Analysis",
+      "skills": "Skills Assessment",
+      "potential": "Potential Assessment",
+      "3months": "Last 3 months",
+      "6months": "Last 6 months",
+      "1year": "Last year",
+      "all": "All time"
+    },
+    "metrics": {
+      "performance_score": "Performance Score",
+      "skills_score": "Skills Level",
+      "potential_score": "Development Potential",
+      "overall_score": "Overall Score"
+    },
+    "sections": {
+      "basic_info": "Basic Information",
+      "core_metrics": "Core Metrics",
+      "skills_assessment": "Skills Assessment",
+      "performance_trend": "Performance Trend",
+      "ai_insights": "AI Insights Report"
+    },
+    "insights": {
+      "strengths": "Strengths",
+      "improvements": "Improvement Suggestions",
+      "development_plan": "Development Plan"
+    },
+    "actions": {
+      "start_analysis": "Start New Analysis",
+      "view_history": "View History",
+      "load_data": "Load Analysis Data"
+    },
+    "empty_state": {
+      "title": "Select an employee to start analysis",
+      "description": "Please select an employee from above to generate a detailed analysis report"
+    }
+  },
+  "team_analysis": {
+    "title": "Team Analysis",
+    "subtitle": "In-depth analysis of team dynamics, collaboration patterns and overall effectiveness",
+    "form": {
+      "select_team": "Select Analysis Team",
+      "department_team": "Department Team",
+      "analysis_depth": "Analysis Depth",
+      "analysis_period": "Analysis Period",
+      "basic": "Basic Analysis",
+      "standard": "Standard Analysis",
+      "comprehensive": "Comprehensive Analysis",
+      "1month": "Last month",
+      "3months": "Last 3 months",
+      "6months": "Last 6 months",
+      "1year": "Last year"
+    },
+    "metrics": {
+      "team_members": "Team Members",
+      "collaboration_efficiency": "Collaboration Efficiency",
+      "productivity_index": "Productivity Index",
+      "satisfaction_score": "Satisfaction Score",
+      "team_score": "Team Score"
+    },
+    "sections": {
+      "team_overview": "Team Overview",
+      "collaboration_network": "Team Collaboration Network",
+      "skill_complementarity": "Skill Complementarity Analysis",
+      "member_performance": "Team Member Performance",
+      "ai_insights": "AI Team Insights Report"
+    },
+    "network": {
+      "density": "Network Density",
+      "centrality": "Core Nodes"
+    },
+    "member_table": {
+      "member": "Member",
+      "role": "Role",
+      "performance": "Performance",
+      "collaboration": "Collaboration",
+      "influence": "Influence",
+      "status": "Status",
+      "excellent": "Excellent",
+      "good": "Good",
+      "average": "Average",
+      "needs_improvement": "Needs Improvement"
+    },
+    "insights": {
+      "strengths": "Team Strengths",
+      "risks": "Risk Identification",
+      "suggestions": "Optimization Suggestions",
+      "action_plan": "Action Plan"
+    },
+    "actions": {
+      "start_analysis": "Start Team Analysis",
+      "export_report": "Export Report",
+      "load_team_data": "Load Team Data"
+    },
+    "empty_state": {
+      "title": "Select a team to start analysis",
+      "description": "Please select a team from above to generate an in-depth team analysis report"
+    }
+  },
+  "notifications": {
+    "welcome": {
+      "title": "Welcome to HR AI Platform",
+      "message": "Begin your intelligent talent analysis journey"
+    },
+    "network": {
+      "online": {
+        "title": "Network connection restored",
+        "message": "Your network connection has been restored"
+      },
+      "offline": {
+        "title": "Network connection lost",
+        "message": "You are currently offline, some features may be unavailable"
+      }
+    },
+    "analysis": {
+      "start": {
+        "title": "Starting analysis",
+        "message": "Loading data and performing AI analysis..."
+      },
+      "complete": {
+        "title": "Analysis complete",
+        "message": "Analysis report has been generated"
+      },
+      "employee_complete": {
+        "title": "Analysis complete",
+        "message": "Employee analysis report has been generated"
+      },
+      "team_complete": {
+        "title": "Team analysis complete",
+        "message": "In-depth team analysis report has been generated"
+      }
+    },
+    "form": {
+      "complexity_warning": "Form is complex, consider completing it step by step",
+      "progress": "Form completion"
+    },
+    "feature": {
+      "coming_soon": "Feature under development",
+      "history_available": "Analysis history feature will be available in the next version",
+      "export_available": "Report export feature will be available in the next version"
+    },
+    "initialization": {
+      "failed": "Initialization failed",
+      "error_message": "An error occurred during application initialization, please refresh the page"
+    }
+  },
+  "errors": {
+    "network_error": "Network connection error",
+    "server_error": "Server error",
+    "validation_error": "Input validation error",
+    "permission_denied": "Permission denied",
+    "not_found": "Resource not found",
+    "generic_error": "An unknown error occurred"
+  },
+  "validation": {
+    "required": "This field is required",
+    "email_invalid": "Please enter a valid email address",
+    "min_length": "Minimum {min} characters required",
+    "max_length": "Maximum {max} characters allowed",
+    "numeric_only": "Numbers only",
+    "alphanumeric_only": "Letters and numbers only"
+  },
+  "accessibility": {
+    "skip_to_content": "Skip to main content",
+    "menu_toggle": "Toggle menu",
+    "search_placeholder": "Search...",
+    "loading_spinner": "Loading",
+    "close_modal": "Close modal",
+    "previous_page": "Previous page",
+    "next_page": "Next page"
+  }
+}

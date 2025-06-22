@@ -1,0 +1,240 @@
+{
+  "common": {
+    "loading": "載入中...",
+    "save": "儲存",
+    "cancel": "取消",
+    "confirm": "確認",
+    "delete": "刪除",
+    "edit": "編輯",
+    "search": "搜尋",
+    "submit": "提交",
+    "reset": "重置",
+    "back": "返回",
+    "next": "下一步",
+    "previous": "上一步",
+    "close": "關閉",
+    "export": "匯出",
+    "import": "匯入",
+    "refresh": "重新整理",
+    "settings": "設定",
+    "help": "說明"
+  },
+  "navigation": {
+    "dashboard": "儀表板",
+    "employee_analysis": "個人分析",
+    "team_analysis": "團隊分析",
+    "reports": "報告中心",
+    "settings": "系統設定",
+    "profile": "個人檔案",
+    "logout": "登出"
+  },
+  "dashboard": {
+    "title": "AI 人才分析儀表板",
+    "subtitle": "綜合視圖：團隊績效與人才洞察",
+    "quick_stats": {
+      "total_employees": "總員工數",
+      "avg_performance": "平均績效分數", 
+      "improvement_areas": "待優化領域",
+      "monthly_analyses": "本月分析次數"
+    },
+    "charts": {
+      "team_performance": "團隊績效趨勢",
+      "skill_distribution": "人才技能分佈"
+    },
+    "recent_activities": {
+      "title": "近期分析活動",
+      "team_collaboration_completed": "團隊協作能力分析完成",
+      "skill_assessment_updated": "員工技能評估更新",
+      "ai_model_training": "績效預測模型訓練"
+    },
+    "ai_suggestions": {
+      "title": "AI 智能建議",
+      "improve_communication": "提升團隊溝通",
+      "skill_training": "技能培訓計劃",
+      "retention_strategy": "人才保留策略"
+    },
+    "actions": {
+      "export_report": "匯出報告",
+      "start_analysis": "開始分析"
+    }
+  },
+  "employee_analysis": {
+    "title": "個人分析",
+    "subtitle": "深度分析個別員工的能力、績效與發展潛力",
+    "form": {
+      "select_employee": "選擇分析對象",
+      "employee_name": "員工姓名",
+      "analysis_type": "分析類型",
+      "time_range": "時間範圍",
+      "comprehensive": "綜合分析",
+      "performance": "績效分析",
+      "skills": "技能評估",
+      "potential": "潛力評估",
+      "3months": "近3個月",
+      "6months": "近6個月",
+      "1year": "近1年",
+      "all": "全部時間"
+    },
+    "metrics": {
+      "performance_score": "績效指標",
+      "skills_score": "技能水平", 
+      "potential_score": "發展潛力",
+      "overall_score": "總體評分"
+    },
+    "sections": {
+      "basic_info": "基本資訊",
+      "core_metrics": "核心指標",
+      "skills_assessment": "技能評估",
+      "performance_trend": "績效趨勢",
+      "ai_insights": "AI 深度分析報告"
+    },
+    "insights": {
+      "strengths": "優勢領域",
+      "improvements": "改進建議", 
+      "development_plan": "發展建議"
+    },
+    "actions": {
+      "start_analysis": "開始新分析",
+      "view_history": "歷史記錄",
+      "load_data": "載入分析資料"
+    },
+    "empty_state": {
+      "title": "選擇員工以開始分析",
+      "description": "請從上方選擇要分析的員工，系統將為您生成詳細的分析報告"
+    }
+  },
+  "team_analysis": {
+    "title": "團隊分析",
+    "subtitle": "深入分析團隊動力、協作模式與整體效能",
+    "form": {
+      "select_team": "選擇分析團隊",
+      "department_team": "部門團隊",
+      "analysis_depth": "分析深度",
+      "analysis_period": "分析週期",
+      "basic": "基礎分析",
+      "standard": "標準分析",
+      "comprehensive": "深度分析",
+      "1month": "近1個月",
+      "3months": "近3個月",
+      "6months": "近6個月",
+      "1year": "近1年"
+    },
+    "metrics": {
+      "team_members": "團隊成員",
+      "collaboration_efficiency": "協作效率",
+      "productivity_index": "生產力指數",
+      "satisfaction_score": "滿意度",
+      "team_score": "團隊評分"
+    },
+    "sections": {
+      "team_overview": "團隊概覽",
+      "collaboration_network": "團隊協作網絡",
+      "skill_complementarity": "技能互補分析",
+      "member_performance": "團隊成員表現",
+      "ai_insights": "AI 團隊洞察報告"
+    },
+    "network": {
+      "density": "網絡密度",
+      "centrality": "核心節點"
+    },
+    "member_table": {
+      "member": "成員",
+      "role": "角色",
+      "performance": "績效",
+      "collaboration": "協作度",
+      "influence": "影響力",
+      "status": "狀態",
+      "excellent": "優秀",
+      "good": "良好",
+      "average": "一般",
+      "needs_improvement": "待改進"
+    },
+    "insights": {
+      "strengths": "團隊優勢",
+      "risks": "風險識別",
+      "suggestions": "優化建議",
+      "action_plan": "行動計劃"
+    },
+    "actions": {
+      "start_analysis": "開始團隊分析",
+      "export_report": "匯出報告",
+      "load_team_data": "載入團隊數據"
+    },
+    "empty_state": {
+      "title": "選擇團隊以開始分析",
+      "description": "請從上方選擇要分析的團隊，系統將為您生成深度團隊分析報告"
+    }
+  },
+  "notifications": {
+    "welcome": {
+      "title": "歡迎使用 HR AI 平台",
+      "message": "開始您的智能人才分析之旅"
+    },
+    "network": {
+      "online": {
+        "title": "網路連線恢復",
+        "message": "您的網路連線已恢復正常"
+      },
+      "offline": {
+        "title": "網路連線中斷",
+        "message": "您目前處於離線狀態，部分功能可能無法使用"
+      }
+    },
+    "analysis": {
+      "start": {
+        "title": "開始分析",
+        "message": "正在載入數據並進行AI分析..."
+      },
+      "complete": {
+        "title": "分析完成",
+        "message": "分析報告已生成"
+      },
+      "employee_complete": {
+        "title": "分析完成", 
+        "message": "員工分析報告已生成"
+      },
+      "team_complete": {
+        "title": "團隊分析完成",
+        "message": "團隊深度分析報告已生成"
+      }
+    },
+    "form": {
+      "complexity_warning": "表單較為複雜，建議分步驟填寫",
+      "progress": "表單完成度"
+    },
+    "feature": {
+      "coming_soon": "功能開發中",
+      "history_available": "分析歷史功能將在下個版本提供",
+      "export_available": "報告匯出功能將在下個版本提供"
+    },
+    "initialization": {
+      "failed": "初始化失敗",
+      "error_message": "應用初始化過程中發生錯誤，請重新整理頁面"
+    }
+  },
+  "errors": {
+    "network_error": "網路連接錯誤",
+    "server_error": "伺服器錯誤",
+    "validation_error": "輸入驗證錯誤",
+    "permission_denied": "權限不足",
+    "not_found": "找不到資源",
+    "generic_error": "發生未知錯誤"
+  },
+  "validation": {
+    "required": "此欄位為必填",
+    "email_invalid": "請輸入有效的電子郵件地址",
+    "min_length": "最少需要 {min} 個字元",
+    "max_length": "最多只能輸入 {max} 個字元",
+    "numeric_only": "只能輸入數字",
+    "alphanumeric_only": "只能輸入字母和數字"
+  },
+  "accessibility": {
+    "skip_to_content": "跳至主要內容",
+    "menu_toggle": "切換選單",
+    "search_placeholder": "搜尋...",
+    "loading_spinner": "載入中",
+    "close_modal": "關閉對話框",
+    "previous_page": "上一頁",
+    "next_page": "下一頁"
+  }
+}

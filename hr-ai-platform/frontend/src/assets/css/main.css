@@ -1,0 +1,333 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* 認知友善設計系統基礎樣式 */
+:root {
+  /* 認知色彩系統 */
+  --cognitive-primary: #2563eb;
+  --cognitive-success: #059669;
+  --cognitive-warning: #d97706;
+  --cognitive-danger: #dc2626;
+  --cognitive-neutral: #6b7280;
+  --cognitive-background: #f8fafc;
+  
+  /* 認知空間系統 */
+  --cognitive-space-xs: 0.25rem;
+  --cognitive-space-sm: 0.5rem;
+  --cognitive-space-md: 1rem;
+  --cognitive-space-lg: 1.5rem;
+  --cognitive-space-xl: 2rem;
+  
+  /* 認知字體系統 */
+  --cognitive-font-xs: 0.75rem;
+  --cognitive-font-sm: 0.875rem;
+  --cognitive-font-md: 1rem;
+  --cognitive-font-lg: 1.125rem;
+  --cognitive-font-xl: 1.25rem;
+}
+
+/* 基礎重置和全局樣式 */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: #374151;
+  background-color: var(--cognitive-background);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 無障礙支援 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* 焦點樣式增強 */
+:focus {
+  outline: 2px solid var(--cognitive-primary);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* 認知載入狀態 */
+.cognitive-loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.cognitive-loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+/* 認知動畫類 */
+.cognitive-fade-enter-active,
+.cognitive-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.cognitive-fade-enter-from,
+.cognitive-fade-leave-to {
+  opacity: 0;
+}
+
+.cognitive-slide-up-enter-active {
+  transition: all 0.5s ease-out;
+}
+
+.cognitive-slide-up-leave-active {
+  transition: all 0.3s ease-in;
+}
+
+.cognitive-slide-up-enter-from,
+.cognitive-slide-up-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* 認知表單樣式 */
+.cognitive-form-section {
+  @apply mb-cognitive-lg p-cognitive-lg border border-gray-200 rounded-lg bg-white shadow-cognitive-sm;
+}
+
+.cognitive-form-section-title {
+  @apply text-cognitive-lg font-semibold text-gray-900 mb-cognitive-md flex items-center;
+}
+
+.cognitive-form-group {
+  @apply mb-cognitive-md;
+}
+
+.cognitive-form-label {
+  @apply block text-cognitive-sm font-medium text-gray-700 mb-cognitive-sm;
+}
+
+.cognitive-form-input {
+  @apply w-full px-cognitive-md py-cognitive-sm border border-gray-300 rounded-md shadow-cognitive-sm focus:ring-2 focus:ring-cognitive-primary focus:border-cognitive-primary transition-colors duration-200;
+}
+
+.cognitive-form-input:invalid {
+  @apply border-cognitive-danger focus:ring-cognitive-danger focus:border-cognitive-danger;
+}
+
+.cognitive-form-error {
+  @apply text-cognitive-sm text-cognitive-danger mt-1;
+}
+
+.cognitive-form-help {
+  @apply text-cognitive-sm text-cognitive-neutral mt-1;
+}
+
+/* 認知按鈕樣式增強 */
+.cognitive-button {
+  @apply inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+.cognitive-button:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+.cognitive-button-primary {
+  @apply bg-cognitive-primary text-white hover:bg-blue-700 focus:ring-cognitive-primary shadow-cognitive-sm hover:shadow-cognitive-md;
+}
+
+.cognitive-button-secondary {
+  @apply bg-white text-cognitive-neutral border border-gray-300 hover:bg-gray-50 focus:ring-cognitive-neutral;
+}
+
+/* 認知通知樣式 */
+.cognitive-notification {
+  @apply fixed top-4 right-4 max-w-sm bg-white rounded-lg shadow-cognitive-lg border p-cognitive-md z-50;
+}
+
+.cognitive-notification-success {
+  @apply border-cognitive-success;
+}
+
+.cognitive-notification-warning {
+  @apply border-cognitive-warning;
+}
+
+.cognitive-notification-error {
+  @apply border-cognitive-danger;
+}
+
+.cognitive-notification-info {
+  @apply border-cognitive-primary;
+}
+
+/* 認知導航樣式 */
+.cognitive-nav-item {
+  @apply flex items-center px-cognitive-md py-cognitive-sm rounded-md text-cognitive-sm font-medium transition-all duration-200;
+}
+
+.cognitive-nav-item:hover {
+  @apply bg-gray-100 transform translateX(2px);
+}
+
+.cognitive-nav-item.active {
+  @apply bg-blue-50 text-cognitive-primary font-semibold relative;
+}
+
+.cognitive-nav-item.active::before {
+  content: '';
+  @apply absolute left-0 top-1/2 transform -translate-y-1/2 w-1 h-5 bg-cognitive-primary rounded-r;
+}
+
+/* 認知卡片樣式 */
+.cognitive-card {
+  @apply bg-white rounded-xl shadow-cognitive-sm border border-gray-100 overflow-hidden;
+}
+
+.cognitive-card-header {
+  @apply px-cognitive-lg py-cognitive-md border-b border-gray-100;
+}
+
+.cognitive-card-body {
+  @apply px-cognitive-lg py-cognitive-md;
+}
+
+.cognitive-card-footer {
+  @apply px-cognitive-lg py-cognitive-md border-t border-gray-100 bg-gray-50;
+}
+
+/* 認知進度條 */
+.cognitive-progress {
+  @apply w-full bg-gray-200 rounded-full h-2 overflow-hidden;
+}
+
+.cognitive-progress-bar {
+  @apply h-full bg-cognitive-primary transition-all duration-300 ease-out;
+}
+
+/* 響應式中斷點調整 */
+@media (max-width: 768px) {
+  .cognitive-layout-mobile {
+    @apply grid-cols-1 gap-cognitive-sm;
+  }
+  
+  .cognitive-form-section {
+    @apply p-cognitive-md;
+  }
+  
+  .cognitive-button {
+    @apply w-full justify-center;
+  }
+}
+
+/* 減少動畫偏好 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 高對比度模式支援 */
+@media (prefers-contrast: high) {
+  :root {
+    --cognitive-primary: #0000ff;
+    --cognitive-success: #008000;
+    --cognitive-warning: #ff8c00;
+    --cognitive-danger: #ff0000;
+    --cognitive-neutral: #000000;
+  }
+  
+  .cognitive-form-input {
+    @apply border-2;
+  }
+  
+  .cognitive-button {
+    @apply border-2 border-current;
+  }
+}
+
+/* 深色模式支援 (Phase 2 功能) */
+@media (prefers-color-scheme: dark) {
+  /* 將在 Phase 2 實現 */
+}
+
+/* 認知視覺層次增強 */
+.cognitive-hierarchy-1 {
+  @apply text-2xl font-bold text-gray-900;
+}
+
+.cognitive-hierarchy-2 {
+  @apply text-xl font-semibold text-gray-800;
+}
+
+.cognitive-hierarchy-3 {
+  @apply text-lg font-medium text-gray-700;
+}
+
+.cognitive-hierarchy-4 {
+  @apply text-base font-normal text-gray-600;
+}
+
+.cognitive-hierarchy-5 {
+  @apply text-sm font-normal text-gray-500;
+}
+
+/* 認知間距工具類 */
+.space-cognitive-xs > * + * {
+  margin-top: var(--cognitive-space-xs);
+}
+
+.space-cognitive-sm > * + * {
+  margin-top: var(--cognitive-space-sm);
+}
+
+.space-cognitive-md > * + * {
+  margin-top: var(--cognitive-space-md);
+}
+
+.space-cognitive-lg > * + * {
+  margin-top: var(--cognitive-space-lg);
+}
+
+.space-cognitive-xl > * + * {
+  margin-top: var(--cognitive-space-xl);
+}

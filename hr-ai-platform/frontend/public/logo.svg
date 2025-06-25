@@ -1,0 +1,76 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 外圈背景 -->
+  <circle cx="32" cy="32" r="30" fill="url(#bgGradient)" stroke="#1e40af" stroke-width="4"/>
+  
+  <!-- 內圈設計 -->
+  <circle cx="32" cy="32" r="24" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  
+  <!-- 主要人形圖標 -->
+  <g transform="translate(32,32)">
+    <!-- 頭部 -->
+    <circle cx="0" cy="-8" r="6" fill="white"/>
+    
+    <!-- 身體 -->
+    <path d="M-10 6 C-10 -2 -6 -6 0 -6 C6 -6 10 -2 10 6 L10 12 L-10 12 Z" fill="white"/>
+    
+    <!-- AI神經網絡效果 -->
+    <g opacity="0.9">
+      <!-- 神經節點 -->
+      <circle cx="-12" cy="-6" r="2" fill="#60a5fa"/>
+      <circle cx="12" cy="-6" r="2" fill="#60a5fa"/>
+      <circle cx="-12" cy="6" r="2" fill="#60a5fa"/>
+      <circle cx="12" cy="6" r="2" fill="#60a5fa"/>
+      <circle cx="0" cy="0" r="2.5" fill="#3b82f6"/>
+      
+      <!-- 連接線 -->
+      <path d="M-12 -6 L0 0 L12 -6" stroke="#60a5fa" stroke-width="2" fill="none"/>
+      <path d="M-12 6 L0 0 L12 6" stroke="#60a5fa" stroke-width="2" fill="none"/>
+      <path d="M-12 -6 L-12 6" stroke="#60a5fa" stroke-width="1.5" fill="none"/>
+      <path d="M12 -6 L12 6" stroke="#60a5fa" stroke-width="1.5" fill="none"/>
+    </g>
+    
+    <!-- 文件知識庫圖標 -->
+    <g transform="translate(0,18)">
+      <rect x="-8" y="0" width="4" height="6" rx="1" fill="#f59e0b"/>
+      <rect x="-2" y="0" width="4" height="6" rx="1" fill="#f59e0b"/>
+      <rect x="4" y="0" width="4" height="6" rx="1" fill="#f59e0b"/>
+      
+      <!-- 文件線條 -->
+      <g stroke="white" stroke-width="0.5" opacity="0.8">
+        <line x1="-6" y1="2" x2="-4" y2="2"/>
+        <line x1="-6" y1="3" x2="-4" y2="3"/>
+        <line x1="0" y1="2" x2="2" y2="2"/>
+        <line x1="0" y1="3" x2="2" y2="3"/>
+        <line x1="6" y1="2" x2="8" y2="2"/>
+        <line x1="6" y1="3" x2="8" y2="3"/>
+      </g>
+    </g>
+    
+    <!-- 問答對話氣泡 -->
+    <g transform="translate(16,-16)" opacity="0.8">
+      <circle cx="0" cy="0" r="6" fill="#10b981"/>
+      <path d="M-2 -2 L2 -2 L2 2 L0 2 L-2 4 L-2 2 Z" fill="#10b981"/>
+      <text x="0" y="1" text-anchor="middle" fill="white" font-size="8" font-weight="bold">?</text>
+    </g>
+  </g>
+  
+  <!-- 環繞效果 -->
+  <g opacity="0.6">
+    <circle cx="32" cy="32" r="28" fill="none" stroke="url(#ringGradient)" stroke-width="2" stroke-dasharray="4 8"/>
+  </g>
+  
+  <!-- 漸變定義 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1d4ed8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:0" />
+      <stop offset="50%" style="stop-color:#60a5fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#60a5fa;stop-opacity:0" />
+    </linearGradient>
+  </defs>
+</svg>

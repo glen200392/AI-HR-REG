@@ -1,0 +1,116 @@
+- 管理模型的上下文窗口
+- 處理主要和次要上下文
+- 實現上下文緩存和更新機制
+- 確保上下文長度控制
+
+2. **Retrieval Augmented Generation (RAG)**
+```python:core/rag_engine.py```
+- 實現檢索增強生成
+- 文檔處理和切分
+- 上下文壓縮檢索
+- 智能提示生成
+
+3. **Context-Aware Generation (CAG)**
+```python:core/context_aware_generation.py```
+- 上下文感知生成
+- 整合歷史對話
+- 任務特定上下文處理
+- 動態提示優化
+
+4. **進階爬蟲系統**
+```python:crawlers/advanced_crawler.py```
+- 多源數據爬取（法規、新聞、公告）
+- 智能內容分類
+- 自動重要性評估
+- 與 RAG 系統整合
+
+系統工作流程：
+
+1. **數據獲取階段**：
+   ```python
+   crawler_manager = AdvancedCrawlerManager(mcp_manager, rag_engine)
+   await crawler_manager.start_crawling()
+   ```
+
+2. **知識處理階段**：
+   ```python
+   rag_engine = RAGEngine(mcp_manager)
+   documents = await rag_engine.process_documents(raw_documents)
+   ```
+
+3. **回答生成階段**：
+   ```python
+   cag = ContextAwareGenerator(mcp_manager, rag_engine)
+   response = await cag.generate_response(query, context_type, task_context)
+   ```
+
+使用示例：
+
+```python
+# 初始化核心組件
+mcp_manager = MCPManager()
+rag_engine = RAGEngine(mcp_manager)
+cag = ContextAwareGenerator(mcp_manager, rag_engine)
+
+# 處理 HR 相關查詢
+async def process_hr_query(query: str):
+    response = await cag.generate_response(
+        query=query,
+        context_type="hr_inquiry",
+        task_specific_context={
+            "department": "HR",
+            "query_type": "policy",
+            "priority": "high"
+        }
+    )
+    return response
+```
+
+主要特點：
+
+1. **智能上下文管理**：
+   - 動態調整上下文窗口
+   - 多層次相關性評分
+   - 自動內容壓縮
+
+2. **增強的檢索能力**：
+   - 向量相似度搜索
+   - 上下文壓縮
+   - 智能文檔切分
+
+3. **上下文感知生成**：
+   - 考慮歷史對話
+   - 整合多源信息
+   - 動態提示優化
+
+4. **高級爬蟲功能**：
+   - 多源數據爬取
+   - 自動內容分類
+   - 實時數據更新
+
+要開始使用這個系統，你需要：
+
+1. 設置環境變量：
+   ```bash
+   OPENAI_API_KEY=your-api-key
+   KNOWLEDGE_BASE_PATH=./data/knowledge_base
+   ```
+
+2. 初始化數據庫：
+   ```python
+   await mcp_manager.initialize_vector_store(initial_documents)
+   ```
+
+3. 啟動爬蟲：
+   ```python
+   crawler_manager = AdvancedCrawlerManager(mcp_manager, rag_engine)
+   await crawler_manager.start_crawling()
+   ```
+
+這個架構設計允許系統：
+- 持續學習和更新知識庫
+- 提供上下文感知的回答
+- 確保回答的準確性和相關性
+- 自動管理和優化性能
+
+需要我詳細解釋任何部分嗎？ 

@@ -1,153 +1,47 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# PyInstaller
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-.python-version
-
-# pipenv
-Pipfile.lock
-
-# PEP 582
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-myenv/
-miniconda3/
-mcp_sdk_env/
-創建一個虛擬環境/
-#/
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# macOS
+# Temporary and system files
+.Trash/
 .DS_Store
-.AppleDouble
-.LSOverride
-
-# Database files
-*.db
-*.sqlite
-*.sqlite3
-chroma_db/
-
-# Log files
-*.log
-logs/
-
-# Cache
-.cache/
-*.cache
-
-# Temporary files
-*.tmp
-*.temp
-
-# API keys and secrets
+*.pyc
+__pycache__/
 .env
-.secrets
-*.key
-*.pem
+.venv/
+venv/
+node_modules/
+.npm/
+.nvm/
+.ollama/
+.docker/
+.config/
+.cache/
+.local/
+temp_uploads/
+vector_store/
+*.log
 
-# Personal files and directories
-Desktop/
-Documents/
-Downloads/
-Library/
-Movies/
-Music/
-Pictures/
-Applications/
-Public/
-Miniconda3-latest-MacOSX-arm64.sh
-Dockerfile
-AI Agent/
-AI Agent for HR/
-Cursor project/
-Projects/
-ai consulting platform/
-backend/
-crawlers/
-frontend/
-hr_ai_agent/
-mcp-server/
-n8n project folder/
-open-webui/
-app/
-core/
-utils/
-docs/
-package.json
-key
-key.pub
-test_mcp.py
+# IDE and editor files
+.vscode/
+.vscode-insiders/
+.cursor/
+.windsurf/
+.codeium/
 
-# Keep only the AI Talent Ecosystem project files
+# OS specific
+.CFUserTextEncoding
+.bash_history
+.zsh_history
+.zsh_sessions/
+.zshrc
+.zprofile
+.profile
+.viminfo
+.lesshst
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Development tools
+.mcp/
+.claude/
+.n8n/

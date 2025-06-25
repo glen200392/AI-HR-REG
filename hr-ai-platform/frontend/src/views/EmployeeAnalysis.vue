@@ -289,25 +289,22 @@ import { ref, reactive, computed, onMounted } from 'vue'
 import { useAppStore } from '@/stores/app'
 import CognitiveButton from '@/components/cognitive/CognitiveButton.vue'
 import CognitiveForm from '@/components/cognitive/CognitiveForm.vue'
+import { apiService, type EmployeeAnalysisRequest } from '@/services/api'
 
 // 應用狀態
 const appStore = useAppStore()
 
 // 組件狀態
 const isAnalyzing = ref(false)
+const isLoading = ref(false)
 const selectedEmployee = ref('')
-const analysisType = ref('comprehensive')
-const timeRange = ref('6months')
-const currentAnalysis = ref(null)
+const analysisType = ref<'comprehensive' | 'performance' | 'skills' | 'potential'>('comprehensive')
+const timeRange = ref<'3months' | '6months' | '1year' | 'all'>('6months')
+const currentAnalysis = ref<any>(null)
+const apiConnected = ref(false)
 
-// 模擬員工數據
-const employees = ref([
-  { id: '1', name: '張小明', position: '前端工程師', department: '研發部' },
-  { id: '2', name: '李小華', position: '產品經理', department: '產品部' },
-  { id: '3', name: '王小美', position: 'UI設計師', department: '設計部' },
-  { id: '4', name: '陳小強', position: '後端工程師', department: '研發部' },
-  { id: '5', name: '林小莉', position: '數據分析師', department: '數據部' }
-])
+// 員工數據
+const employees = ref<any[]>([])
 
 // 核心指標計算
 const coreMetrics = computed(() => {
@@ -339,27 +336,126 @@ const coreMetrics = computed(() => {
   ]
 })
 
-// 處理員工選擇
-const handleEmployeeSelect = (event: Event) => {
+// 載入員工列表
+const loadEmployees = async () => {
+  try {
+    isLoading.value = true
+    const result = await apiService.getEmployees()
+    
+    if (result.success && result.data) {
+      employees.value = result.data
+      console.log('✅ 員工列表載入成功:', employees.value.length)
+    } else {
+      throw new Error(result.error || '載入員工列表失敗')
+    }
+  } catch (error) {
+    console.error('❌ 載入員工列表失敗:', error)
+    appStore.showWarning('載入失敗', '無法載入員工列表，使用模擬數據')
+    
+    // 降級到模擬數據
+    employees.value = [
+      { id: '1', name: '張小明', position: '前端工程師', department: '研發部' },
+      { id: '2', name: '李小華', position: '產品經理', department: '產品部' },
+      { id: '3', name: '王小美', position: 'UI設計師', department: '設計部' },
+      { id: '4', name: '陳小強', position: '後端工程師', department: '研發部' },
+      { id: '5', name: '林小莉', position: '數據分析師', department: '數據部' }
+    ]
+  } finally {
+    isLoading.value = false
+  }
+}
+
+// 處理員工選擇 - 使用真實API
+const handleEmployeeSelect = async (event: Event) => {
   if (!selectedEmployee.value) return
   
   isAnalyzing.value = true
-  appStore.showInfo('開始分析', '正在載入員工數據並進行AI分析...')
+  appStore.showInfo('開始AI分析', '正在使用人工智慧進行深度分析，請稍候...')
   
-  // 模擬API調用
-  setTimeout(() => {
-    loadEmployeeAnalysis(selectedEmployee.value)
+  try {
+    // 準備分析參數
+    const analysisParams: EmployeeAnalysisRequest = {
+      analysisType: analysisType.value,
+      timeRange: timeRange.value,
+      recentPerformance: "持續穩定表現，近期項目完成度高",
+      feedback: "同事評價積極，溝通協作能力強",
+      projectContribution: "在團隊項目中貢獻突出，技術能力獲得認可"
+    }
+
+    console.log('🚀 開始AI分析:', selectedEmployee.value, analysisParams)
+
+    // 調用真實的AI分析API
+    const result = await apiService.analyzeEmployee(selectedEmployee.value, analysisParams)
+    
+    if (result.success && result.data) {
+      // 轉換API響應為前端顯示格式
+      currentAnalysis.value = transformAnalysisResult(result.data)
+      
+      const sourceText = result.data.metadata?.source === 'openai' ? 'OpenAI GPT-4' : 
+                        result.data.metadata?.source === 'mock' ? '模擬AI' : 'AI分析'
+      
+      appStore.showSuccess('AI分析完成', `已使用${sourceText}生成智能分析報告`)
+      
+      console.log('✅ AI分析完成:', result.data.metadata)
+    } else {
+      throw new Error(result.error || '分析失敗')
+    }
+  } catch (error) {
+    console.error('❌ AI分析失敗:', error)
+    appStore.showError('分析失敗', apiService.handleAPIError(error))
+    
+    // 降級到模擬數據
+    loadEmployeeAnalysisFallback(selectedEmployee.value)
+  } finally {
     isAnalyzing.value = false
-    appStore.showSuccess('分析完成', '員工分析報告已生成')
-  }, 2000)
+  }
 }
 
-// 載入員工分析數據
-const loadEmployeeAnalysis = (employeeId: string) => {
+// 轉換AI分析結果為前端格式
+const transformAnalysisResult = (result: any) => {
+  const { employee, analysis, metadata } = result
+  
+  return {
+    id: employee.id,
+    name: employee.name,
+    position: employee.position,
+    department: employee.department,
+    joinDate: employee.joinDate || '2022-01-01',
+    experience: employee.experience || 2,
+    overallScore: analysis.overallScore?.toString() || '8.0',
+    performanceScore: analysis.performanceScore || analysis.overallScore || 8.0,
+    skillsScore: analysis.skillsScore || analysis.overallScore * 0.9 || 7.5,
+    potentialScore: analysis.potentialScore || analysis.overallScore * 1.1 || 8.5,
+    skills: employee.skills?.map((skill: string, index: number) => ({
+      name: skill,
+      level: Math.min(5, Math.max(1, Math.round((analysis.skillsScore || 8) * 0.6) + (index % 2)))
+    })) || [
+      { name: '專業技能', level: 4 },
+      { name: '溝通協作', level: 4 },
+      { name: '學習能力', level: 5 }
+    ],
+    performanceTrend: {
+      improvement: Math.round(((analysis.performanceScore || analysis.overallScore) - 7) * 5),
+      consistency: Math.round((analysis.performanceScore || analysis.overallScore) * 10)
+    },
+    aiInsights: {
+      strengths: analysis.strengths || ["表現良好", "具備發展潛力"],
+      improvements: analysis.improvements || ["持續學習", "加強專業技能"],
+      developmentPlan: analysis.developmentPlan || "建議制定個人發展計劃，持續提升專業能力。"
+    },
+    metadata: {
+      source: metadata?.source || 'unknown',
+      analyzedAt: metadata?.analyzedAt || new Date().toISOString(),
+      analysisId: metadata?.analysisId
+    }
+  }
+}
+
+// 降級到模擬數據的員工分析
+const loadEmployeeAnalysisFallback = (employeeId: string) => {
   const employee = employees.value.find(e => e.id === employeeId)
   if (!employee) return
   
-  // 模擬分析數據
   currentAnalysis.value = {
     id: employee.id,
     name: employee.name,
@@ -394,21 +490,57 @@ const loadEmployeeAnalysis = (employeeId: string) => {
         '可考慮承擔技術導師角色，提升領導力'
       ],
       developmentPlan: '建議在接下來的6個月內，重點發展系統架構設計能力，同時可以考慮參與技術分享和團隊培訓，既能提升個人影響力，也能為團隊發展做出貢獻。'
+    },
+    metadata: {
+      source: 'fallback',
+      analyzedAt: new Date().toISOString()
     }
   }
+  
+  appStore.showInfo('使用模擬數據', '已生成模擬分析報告')
 }
 
 // 開始新分析
 const startAnalysis = () => {
-  // 重置選擇
   selectedEmployee.value = ''
   currentAnalysis.value = null
   appStore.showInfo('準備開始', '請選擇要分析的員工')
 }
 
-// 切換分析歷史
-const toggleAnalysisHistory = () => {
-  appStore.showInfo('功能開發中', '分析歷史功能將在下個版本提供')
+// 查看分析歷史
+const toggleAnalysisHistory = async () => {
+  if (!selectedEmployee.value) {
+    appStore.showWarning('請先選擇員工', '需要先選擇員工才能查看分析歷史')
+    return
+  }
+
+  try {
+    const result = await apiService.getEmployeeHistory(selectedEmployee.value, 5)
+    if (result.success && result.data?.length > 0) {
+      appStore.showSuccess('歷史記錄', `找到 ${result.data.length} 條分析記錄`)
+      console.log('📚 分析歷史:', result.data)
+    } else {
+      appStore.showInfo('暫無歷史', '該員工暫無分析歷史記錄')
+    }
+  } catch (error) {
+    console.error('❌ 獲取歷史失敗:', error)
+    appStore.showError('載入失敗', '無法載入分析歷史')
+  }
+}
+
+// 檢查API連接
+const checkAPIConnection = async () => {
+  try {
+    apiConnected.value = await apiService.testConnection()
+    if (apiConnected.value) {
+      console.log('✅ 後端API連接正常')
+    } else {
+      console.warn('⚠️ 後端API連接失敗，將使用模擬數據')
+    }
+  } catch (error) {
+    console.error('❌ API連接檢查失敗:', error)
+    apiConnected.value = false
+  }
 }
 
 // 獲取姓名縮寫
@@ -417,8 +549,20 @@ const getInitials = (name: string) => {
 }
 
 // 初始化
-onMounted(() => {
-  appStore.showInfo('個人分析模塊載入完成', '可以開始選擇員工進行分析')
+onMounted(async () => {
+  console.log('🚀 初始化員工分析模塊')
+  
+  // 檢查API連接
+  await checkAPIConnection()
+  
+  // 載入員工列表
+  await loadEmployees()
+  
+  const statusMessage = apiConnected.value 
+    ? '個人分析模塊載入完成，AI功能已就緒' 
+    : '個人分析模塊載入完成，使用模擬數據模式'
+  
+  appStore.showInfo('模塊就緒', statusMessage)
 })
 </script>
 

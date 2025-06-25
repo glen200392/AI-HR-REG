@@ -1,6 +1,6 @@
 """
-Master Orchestrator - Strategic Coordination Center
-整合各智能體洞察，提供統一的策略建議
+Master Orchestrator - RAG Knowledge Management System
+專門管理RAG智能知識助手，提供統一的知識查詢服務
 """
 
 from typing import Dict, Any, List, Optional, Tuple
@@ -11,11 +11,7 @@ import json
 from datetime import datetime, timedelta
 import logging
 from .base_agent import BaseAgent
-from .brain_agent import BrainAgent
-from .talent_agent import TalentAgent
-from .culture_agent import CultureAgent
-from .future_agent import FutureAgent
-from .process_agent import ProcessAgent
+from .rag_knowledge_agent import RAGKnowledgeAgent, QueryResult, DocumentInfo
 
 
 class Priority(Enum):

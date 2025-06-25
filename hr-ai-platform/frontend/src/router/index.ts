@@ -6,11 +6,20 @@ import { useAuthStore } from '@/stores/auth'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
+    name: 'chat',
+    component: () => import('@/views/ChatInterface.vue'),
+    meta: {
+      title: 'HR智能知識助手',
+      requiresAuth: false // MVP 階段暫不需要登入
+    }
+  },
+  {
+    path: '/dashboard',
     name: 'dashboard',
     component: () => import('@/views/dashboard/DashboardView.vue'),
     meta: {
       title: '儀表板',
-      requiresAuth: false // MVP 階段暫不需要登入
+      requiresAuth: false
     }
   },
   {
